@@ -27,12 +27,17 @@ module.exports = (router) => {
 		Store.saveAuth(interaction, (interactionId) => {
 			res.send(interactionId);
 		});
-    });
-    
-    router.get('/api/interaction/:interactionId', (req,res)=>{
-        Store.authInfo(req.params.interactionId, authInfo =>{
-            res.send(authInfo);
-        })
+	});
 
-    })
+	router.get('/api/interaction/:interactionId', (req, res) => {
+		Store.authInfo(req.params.interactionId, (authInfo) => {
+			res.send(authInfo);
+		});
+	});
+
+	router.post('/api/interaction/:interactionId', (req, res) => {
+		Store.updateAuth(req.params.interactionId, req.body, (interactionId) => {
+			res.send(interactionId);
+		});
+	});
 };
