@@ -6,11 +6,11 @@ async function saveAuth(interaction, interactionId){
 
     console.log ('SAVE INTERACTION >>>  ', JSON.stringify(interaction));
     var requestUUID = uuidv4();
-    client.hmset(requestUUID,'auth_data', JSON.stringify(interaction));
+    client.hset(requestUUID, JSON.stringify(interaction));
     interactionId(requestUUID);
 }
 async function authInfo(sessionId, callback) {
-    client.hmget(sessionId, 'auth_data', (err, result) => {
+    client.hget(sessionId, (err, result) => {
         if (err) {
             console.log('error returning the data');
         } else if (result) {
@@ -20,7 +20,7 @@ async function authInfo(sessionId, callback) {
 }
 async function updateAuth(requestUUID, interaction, interactionId){
     console.log ('UPDATE INTERACTION >>>  ', JSON.stringify(interaction));
-    client.hmset(requestUUID, 'auth_data',JSON.stringify(interaction));
+    client.hset(requestUUID,JSON.stringify(interaction));
     interactionId(requestUUID);
 }
 
