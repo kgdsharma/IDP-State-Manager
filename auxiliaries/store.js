@@ -3,12 +3,14 @@ const { v4: uuidv4 } = require('uuid');
 const client = redis.createClient(process.env.REDIS_URL || 6379);
 
 async function saveAuth(interaction, interactionId){
+
+    console.log ('SAVE INTERACTION >>>  ', JSON.stringify(interaction));
     var requestUUID = uuidv4();
-    client.hmset(requestUUID, JSON.stringify(interaction));
+    client.hset(requestUUID,'auth_data', JSON.stringify(interaction));
     interactionId(requestUUID);
 }
 async function authInfo(sessionId, callback) {
-    client.hmget(sessionId, (err, result) => {
+    client.hget(sessionId, 'auth_data', (err, result) => {
         if (err) {
             console.log('error returning the data');
         } else if (result) {
@@ -16,12 +18,10 @@ async function authInfo(sessionId, callback) {
         }
     });
 }
-
 async function updateAuth(requestUUID, interaction, interactionId){
-    client.hmset(requestUUID, JSON.stringify(interaction));
+    console.log ('UPDATE INTERACTION >>>  ', interaction);
+    client.hset(requestUUID, 'auth_data',interaction);
     interactionId(requestUUID);
 }
-
-
 
 module.exports = {saveAuth, authInfo, updateAuth};
