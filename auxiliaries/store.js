@@ -19,8 +19,8 @@ async function authInfo(sessionId, callback) {
     });
 }
 async function updateAuth(requestUUID, interaction, interactionId){
-    console.log ('UPDATE INTERACTION >>>  ', interaction);
-    client.hset(requestUUID, 'auth_data',interaction);
+    console.log ('UPDATE INTERACTION >>>  ', JSON.stringify(interaction));
+    client.hset(requestUUID, 'auth_data',JSON.stringify(interaction));
     interactionId(requestUUID);
 }
 
