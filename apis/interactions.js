@@ -8,8 +8,14 @@ const Store = require('../auxiliaries/store');
 module.exports = (router) => {
 	router.put('/api/interaction', (req, res) => {
 		let AuthRequest = new AuthorizationRequest();
-		AuthRequest.setappBaseUrl(req.body.baseurl);
-		AuthRequest.setClientId(req.body.clientId);
+		
+		AuthRequest.setappBaseUrl(req.body.appBaseUrl);
+		AuthRequest.setClientId(req.body.client_id);
+		AuthRequest.setRedirectUri(req.body.redirect_uri);
+		AuthRequest.setRequestScope(req.body.req_scope);
+		AuthRequest.setResponseType(req.body.response_type);
+		AuthRequest.setRequestState(req.body.req_state);
+
 
 		let AuthResponse = new AuthorizationResponse();
 		AuthResponse.setUserAuthenticated(req.body.authenticated || false);
