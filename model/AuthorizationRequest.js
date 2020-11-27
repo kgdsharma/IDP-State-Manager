@@ -16,10 +16,10 @@ AuthorizationRequest.prototype.setClientId = function (clientId) {
 	this.clientId = clientId;
 };
 
-AuthorizationRequest.prototype.getappBaseUrl = function () {
+AuthorizationRequest.prototype.getAppBaseUrl = function () {
 	return this.appBaseUrl;
 };
-AuthorizationRequest.prototype.setappBaseUrl = function (appBaseUrl) {
+AuthorizationRequest.prototype.setAppBaseUrl = function (appBaseUrl) {
 	this.appBaseUrl = appBaseUrl;
 };
 
