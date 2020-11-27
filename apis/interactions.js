@@ -65,7 +65,7 @@ module.exports = (router) => {
 			let AuthResponse = new AuthorizationResponse();
 			AuthResponse.setUserAuthenticated(req.body.authenticated || false);
 			AuthResponse.setauthorizedScopes(
-				req.body.scopes || savedAuthInfo.AuthorizationRequest.req_scope
+				req.body.scope || savedAuthInfo.AuthorizationRequest.req_scope
 			);
 
 			let AuthenticatedUser = new User();
